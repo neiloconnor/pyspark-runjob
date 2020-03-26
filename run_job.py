@@ -3,7 +3,7 @@ from google.cloud import storage
 from google.cloud import dataproc_v1 as dataproc
 import time
 
-import job_settings as settings
+import settings
 
 def create_bucket(bucket_name):
     # Instantiates a client

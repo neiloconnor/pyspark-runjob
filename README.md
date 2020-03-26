@@ -36,8 +36,8 @@ Note that this variable only exists within the terminal where you executed the c
 
  ## Running your job
 
- ### Job settings
- Update `job_settings.py` with your bucket name, data file name and pyspark job filename.
+ ### Settings
+ Update `settings.py` with your bucket name, data file name and pyspark job filename.
 
  ### Run the job
  In the terminal ***(make sure that `GOOGLE_APPLICATION_CREDENTIALS` has been set)***
