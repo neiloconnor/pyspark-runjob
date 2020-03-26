@@ -1,5 +1,6 @@
 # Imports the Google Cloud client library
 from google.cloud import storage
+from google.api_core.exceptions import NotFound
 from google.cloud import dataproc_v1 as dataproc
 import time
 
@@ -9,10 +10,15 @@ def create_bucket(bucket_name):
     # Instantiates a client
     storage_client = storage.Client()
 
-    # Creates the new bucket
-    bucket = storage_client.create_bucket(bucket_name)
+    # Check if the bucket exists
+    try:
+        bucket = storage_client.get_bucket(bucket_name)
+        print(f'Bucket {bucket.name} exists')
 
-    print(f'Bucket {bucket.name} created')
+    except NotFound:
+        # Create the new bucket
+        bucket = storage_client.create_bucket(bucket_name)
+        print(f'Bucket {bucket.name} created')
 
 def upload_file(bucket_name, file_name):
     storage_client = storage.Client()
@@ -126,7 +132,7 @@ def run_dataproc_job(project_id, region, cluster_name, job_file_path):
 
 if __name__ == "__main__":
     create_bucket(settings.BUCKET_NAME)
-    upload_file(settings.BUCKET_NAME, settings.DATA_FILENAME)
-    upload_file(settings.BUCKET_NAME, settings.CODE_FILENAME)
+    # upload_file(settings.BUCKET_NAME, settings.DATA_FILENAME)
+    # upload_file(settings.BUCKET_NAME, settings.CODE_FILENAME)
 
-    run_dataproc_job(settings.PROJECT_ID, settings.REGION, settings.CLUSTER_NAME, f'gs://{settings.BUCKET_NAME}/{settings.CODE_FILENAME}')
+    # run_dataproc_job(settings.PROJECT_ID, settings.REGION, settings.CLUSTER_NAME, f'gs://{settings.BUCKET_NAME}/{settings.CODE_FILENAME}')
