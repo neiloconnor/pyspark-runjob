@@ -34,14 +34,26 @@ export GOOGLE_APPLICATION_CREDENTIALS="/home/username/big_data/gcp_auth.json"
 ```
 Note that this variable only exists within the terminal where you executed the command. You'll need to repeat this step each time you open a new terminal. If you are working on your own laptop you can set the environment variable permanently.
 
- ## Running your job
+## Running your job
 
- ### Settings
- Update `settings.py` with your bucket name, data file name and pyspark job filename.
+### Copy
+Copy `settings.py` and `run_job.py` into your project folder, where you have the data and your Python program. 
 
- ### Run the job
- In the terminal ***(make sure that `GOOGLE_APPLICATION_CREDENTIALS` has been set)***
- ```shell
+### Settings
+Update `settings.py` for the specific job.
+```python
+BUCKET_NAME = 'your bucket name'
+DATA_FILENAME = 'local file containing data for the job'
+CODE_FILENAME = 'local python file containing logic for the job'
+
+PROJECT_ID = 'your project ID on Google Cloud Platform'
+REGION = 'region where you want to run the job'
+CLUSTER_NAME = 'a name for the Hadoop cluster'
+```
+
+### Run the job
+In the terminal ***(make sure that `GOOGLE_APPLICATION_CREDENTIALS` has been set)***
+```shell
 python run_job.py
- ```
+```
  
