@@ -132,7 +132,7 @@ def run_dataproc_job(project_id, region, cluster_name, job_file_path):
 
 if __name__ == "__main__":
     create_bucket(settings.BUCKET_NAME)
-    # upload_file(settings.BUCKET_NAME, settings.DATA_FILENAME)
-    # upload_file(settings.BUCKET_NAME, settings.CODE_FILENAME)
+    upload_file(settings.BUCKET_NAME, settings.DATA_FILENAME)
+    upload_file(settings.BUCKET_NAME, settings.CODE_FILENAME)
 
-    # run_dataproc_job(settings.PROJECT_ID, settings.REGION, settings.CLUSTER_NAME, f'gs://{settings.BUCKET_NAME}/{settings.CODE_FILENAME}')
+    run_dataproc_job(settings.PROJECT_ID, settings.REGION, settings.CLUSTER_NAME, f'gs://{settings.BUCKET_NAME}/{settings.CODE_FILENAME}')
